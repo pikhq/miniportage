@@ -1,0 +1,10 @@
+#!/bin/sh
+test -e miniportage || ./build
+: ${PREFIX:=/}
+: ${CONFIGDIR:=$PREFIX/etc}
+: ${BINDIR:=$PREFIX/bin}
+: ${LIBDIR:=$PREFIX/lib}
+set -x
+install -D miniportage "$DESTDIR/$BINDIR/miniportage"
+install -D -m 644 main.sh "$DESTDIR/$LIBDIR/miniportage/main.sh"
+install -D -m 644 miniportage.conf "$DESTDIR/$CONFIGDIR/miniportage.conf"

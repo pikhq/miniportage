@@ -1,0 +1,19 @@
+#!/bin/sh
+: ${PREFIX:=/}
+: ${CONFIGDIR:=$PREFIX/etc}
+: ${BINDIR:=$PREFIX/bin}
+: ${LIBDIR:=$PREFIX/lib}
+set -x
+cat <<EOF >miniportage
+#!/bin/sh
+CONFIGDIR="$CONFIGDIR"
+LIBDIR="$LIBDIR"
+. \$CONFIGDIR/miniportage.conf
+. \$LIBDIR/miniportage/main.sh
+EOF
+chmod +x miniportage
+cat <<EOF >miniportage.conf
+prefix="$PREFIX"
+destdir="$DESTDIR"
+EOF
+
